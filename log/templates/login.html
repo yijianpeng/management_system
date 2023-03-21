@@ -1,0 +1,83 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
+  <link rel="stylesheet" href="{% static 'css/login.css' %}">
+  <title>登陆</title>
+  <style>
+    body {
+      background-image: url("{% static 'img/image.png' %}");
+      background-size: 100% 100%;;
+      background-position: center;
+    }
+
+    .container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .login {
+      max-width: 400px;
+      width: 100%;
+      padding: 20px;
+      background-color: #fff;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .login-header {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .login-body {
+      margin-bottom: 20px;
+    }
+
+    .ui.form button {
+      margin-top: 10px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="login">
+      <div class="login-header">
+        <h3 class="ui header">车载智能巡检管理系统</h3>
+      </div>
+      <div class="login-body">
+        <form action="/index/" method="post" class="ui form">
+          {% csrf_token %}
+          <div class="ui error message">{{ msg }}</div>
+          <div class="field">
+            <label for="username">用户名：</label>
+            <input type="text" name="username" placeholder="请输入用户名">
+          </div>
+          <div class="field">
+            <label for="password">密码：</label>
+            <input type="password" name="password" placeholder="请输入密码">
+          </div>
+          <button type="submit" class="ui primary button">登录</button>
+        </form>
+        <p>{{ rlt }}</p>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/semantic-ui/2.4.2/semantic.min.js"></script>
+  <script>
+    $('.message .close').on('click', function() {
+      $(this).closest('.message').transition('fade');
+    });
+  </script>
+</body>
+
+</html>

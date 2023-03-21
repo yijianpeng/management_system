@@ -1,0 +1,32 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>车载智能巡检管理系统</title>
+	<link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+	<h1>车载智能巡检管理系统</h1>
+	<div class="container">
+		<div class="status">
+			<p>系统状态</p>
+			<div class="rectangle">{{ status }}</div>
+		</div>
+		<div class="memory">
+			<p>内存使用</p>
+			<div class="chart">
+				<div class="bar" style="height: {{ memory_usage}}%"></div>
+			</div>
+			<p class="percentage">{{ memory_usage }}%</p>
+		</div>
+		<div class="CPU">
+			<p>CPU使用</p>
+			<div class="chart">
+				<div class="bar" style="height: {{ CPU_memory}}%"></div>
+			</div>
+			<p class="percentage">{{ CPU_memory }}%</p>
+		</div>
+	</div>
+</body>
+</html>

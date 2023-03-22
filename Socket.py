@@ -1,5 +1,6 @@
 import socket
 import pymysql.cursors
+import string
 
 # 连接数据库
 connection = pymysql.connect(host='127.0.0.1',
@@ -35,10 +36,13 @@ try:
         if data:
             # 解析数据
             lat, lon = data.split(',')
+            latitude=lat.translate(str.maketrans('', '','N'))
+            longitude=lon.translate(str.maketrans('','','E'))
+            print(latitude)
             # 将数据插入到数据库中
             with connection.cursor() as cursor:
                 sql = "INSERT INTO `gps_gps` (`longitude`,`latitude`,`data`)"" VALUES (%s,%s,%s)"
-                param=(lat,lon,"施工地点")    
+                param=(longitude,latitude,"施工地点")    
                 cursor.execute(sql,param)
                 connection.commit()
 

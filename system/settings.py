@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     "log",
     "system",
     "gps",
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
@@ -135,6 +136,15 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 ALLOWED_HOSTS = ['192.168.1.104','192.168.1.100']
+
+REST_FRAMEWORK = {  
+    'DEFAULT_PARSER_CLASSES': [
+        'rest_framework.parsers.JSONParser',
+        'rest_framework.parsers.MultiPartParser',
+        'rest_framework.parsers.FormParser',
+    ],
+}
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 

@@ -18,7 +18,7 @@ from django.urls import include, path
 import log
 from log import urls
 urlpatterns = [
-   # path("admin/", admin.site.urls),
+   path("admin/", admin.site.urls),
    path('',include('log.urls')),
    path('',include('gps.urls')),
 ]

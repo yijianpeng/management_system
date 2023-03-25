@@ -153,4 +153,3 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 SIMPLEUI_HOME_INFO = False 
 SIMPLEUI_ANALYSIS = False
 
-SIMPLEUI_INDEX = 'http://127.0.0.1:8000/location/'

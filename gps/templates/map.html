@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <title>点标记可拖拽</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <style>
+    body,
+    html,
+    #container {
+        overflow: hidden;
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        font-family: "微软雅黑";
+    }
+    </style>
+    <script src="//api.map.baidu.com/api?type=webgl&v=1.0&ak=OxFoB6mKG2IsvrI724oRAIUKCi9pER8Z"></script>
+    <script src="//cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+<body>
+    <div id="container"></div>
+</body>
+</html>
+
+<script>
+var map = new BMapGL.Map('container');
+var point = new BMapGL.Point(113,23.047981);
+map.addOverlay(point);
+map.centerAndZoom(point, 15);
+map.enableScrollWheelZoom(true);
+// 异步请求JSON数据并解析
+$.getJSON('http://192.168.1.104:8000/map-data/', function(data) {
+    if (data && data.data) {
+        var locations = data.data;
+        locations.forEach(function(loc) {
+            var marker = new BMapGL.Marker(new BMapGL.Point(loc.lng, loc.lat));
+            map.addOverlay(marker);
+            // 添加弹出窗口
+            var contentString = '<div>';
+            loc.images.forEach(function(img_url) {
+                contentString += '<img src="' + img_url + '" style="max-width: 100%;">';
+            });
+            contentString += '</div>';
+            var infoWindow = new BMapGL.InfoWindow(contentString);
+            marker.addEventListener('click', function() {
+                this.openInfoWindow(infoWindow);
+            });
+        });
+    }
+});
+</script>

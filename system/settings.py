@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     "system",
     "gps",
     'rest_framework',
+    "orders"
 ]
 
 MIDDLEWARE = [
@@ -120,6 +121,7 @@ TIME_ZONE = "UTC"
 
 USE_I18N = True
 
+TIME_ZONE = 'Asia/Shanghai'
 USE_TZ = True
 
 SIMPLEUI_LOGO = 'https://img05.51jobcdn.com/im/2017/resumetemplate/xiaohui/attachment/1374.jpg' 

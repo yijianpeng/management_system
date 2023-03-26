@@ -1,0 +1,19 @@
+<!-- assign_task.html -->
+<form method="post" action="{% url 'tasks:assign_task' %}">
+    {% csrf_token %}
+    <label for="task">Select a task:</label>
+    <select name="task_id" id="task">
+        {% for task in tasks %}
+            <option value="{{ task.id }}">{{ task.name }}</option>
+        {% endfor %}
+    </select>
+    <br>
+    <label for="employee">Select an employee:</label>
+    <select name="employee_id" id="employee">
+        {% for employee in employees %}
+            <option value="{{ employee.id }}">{{ employee.name }}</option>
+        {% endfor %}
+    </select>
+    <br>
+    <button type="submit">Assign Task</button>
+</form>

@@ -8,11 +8,13 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = []
+    dependencies = [
+        ("gps", "0001_initial"),
+    ]
 
     operations = [
         migrations.CreateModel(
-            name="Location",
+            name="Employee",
             fields=[
                 (
                     "id",
@@ -23,18 +25,14 @@ class Migration(migrations.Migration):
                         verbose_name="ID",
                     ),
                 ),
-                ("longitude", models.DecimalField(decimal_places=6, max_digits=9)),
-                ("latitude", models.DecimalField(decimal_places=6, max_digits=9)),
-                ("created_at", models.DateTimeField(auto_now_add=True)),
-                ("updated_at", models.DateTimeField(auto_now=True)),
+                ("name", models.CharField(max_length=255)),
+                ("email", models.EmailField(max_length=255)),
+                ("phone_number", models.CharField(max_length=20)),
+                ("department", models.CharField(max_length=255)),
             ],
-            options={
-                "verbose_name": "定位",
-                "verbose_name_plural": "定位",
-            },
         ),
         migrations.CreateModel(
-            name="Image",
+            name="Task",
             fields=[
                 (
                     "id",
@@ -45,13 +43,23 @@ class Migration(migrations.Migration):
                         verbose_name="ID",
                     ),
                 ),
-                ("image", models.ImageField(upload_to="images/")),
+                ("name", models.CharField(max_length=255)),
+                ("description", models.TextField()),
+                ("created_at", models.DateTimeField(auto_now_add=True)),
+                ("updated_at", models.DateTimeField(auto_now=True)),
+                (
+                    "assigned_to",
+                    models.ForeignKey(
+                        blank=True,
+                        null=True,
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="orders.employee",
+                    ),
+                ),
                 (
                     "location",
                     models.ForeignKey(
-                        on_delete=django.db.models.deletion.CASCADE,
-                        related_name="images",
-                        to="gps.location",
+                        on_delete=django.db.models.deletion.CASCADE, to="gps.location"
                     ),
                 ),
             ],

@@ -25,5 +25,6 @@ urlpatterns = [
    path("admin/", admin.site.urls),
    path('',include('log.urls')),
    path('',include('gps.urls')),
+   path('',include('orders.urls')),
    re_path(r'^media/(?P<path>.*)$', serve, {'document_root': MEDIA_ROOT}),
 ]

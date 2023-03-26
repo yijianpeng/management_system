@@ -40,8 +40,10 @@ $.getJSON('http://192.168.1.104:8000/map-data/', function(data) {
             map.addOverlay(marker);
             // 添加弹出窗口
             var contentString = '<div>';
+            img_url2='/media/images/result.jpg'
+            img_url1='https://ts1.cn.mm.bing.net/th/id/R-C.63626c112fd6f219719949f27a73fff7?rik=wjkNnlzHFEeb6w&riu=http%3a%2f%2fwww.evask360.com%2fdata%2fattach%2f1809%2fY0YBTKna.png&ehk=NkVn2XFPqbAnq77%2fkQ1fo5a4Ag51V%2fJZWyo5t8SS4iM%3d&risl=&pid=ImgRaw&r=0'
             loc.images.forEach(function(img_url) {
-                contentString += '<img src="' + img_url + '" style="max-width: 100%;">';
+                contentString += '<img src="' + img_url + ' " style="max-width: 100%;">';
             });
             contentString += '</div>';
             var infoWindow = new BMapGL.InfoWindow(contentString);

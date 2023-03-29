@@ -138,7 +138,7 @@ STATICFILES_DIRS = [
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-ALLOWED_HOSTS = ['192.168.1.104','192.168.1.100']
+ALLOWED_HOSTS = ['192.168.1.104','192.168.1.105']
 
 REST_FRAMEWORK = {  
     'DEFAULT_PARSER_CLASSES': [
@@ -147,6 +147,19 @@ REST_FRAMEWORK = {
         'rest_framework.parsers.FormParser',
     ],
 }
+
+
+
+# 邮件提醒功能配置
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.qq.com'
+EMAIL_PORT = 25
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = '2531942094@qq.com'
+EMAIL_HOST_PASSWORD = 'olzmlkdtkiywebha'
+DEFAULT_FROM_EMAIL = '2531942094@qq.com'
+
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field

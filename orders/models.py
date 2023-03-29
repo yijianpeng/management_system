@@ -18,11 +18,15 @@ class Task(models.Model):
     assigned_to = models.ForeignKey(Employee, on_delete=models.CASCADE, null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    STATUS_CHOICES = (
-        ('New', 'New'),
-        ('In Progress', 'In Progress'),
-        ('Completed', 'Completed'),
+    STATUS_CHOICES = [
+        ('NEW', '正在进行'),
+        ('InProgress', '正在进行'),
+        ('Completed', '已完成'),
+    ]
+    status=models.CharField(
+        max_length=50,
+        choices=STATUS_CHOICES,
+        default='NEW',
     )
-    
     def __str__(self):
         return self.name

@@ -30,3 +30,7 @@ class Task(models.Model):
     )
     def __str__(self):
         return self.name
+    
+    class Meta:
+        verbose_name = '派单任务'
+        verbose_name_plural = '任务列表'  # 设置复数的显示
